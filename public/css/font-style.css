@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'ThaiSans_Lite';
+    src: url('../fonts/ThaiSansLite/thaisanslite_r1.eot');
+    src: url('../fonts/ThaiSansLite/thaisanslite_r1.eot') format('embedded-opentype'),
+         url('../fonts/ThaiSansLite/thaisanslite_r1.woff2') format('woff2'),
+         url('../fonts/ThaiSansLite/thaisanslite_r1.woff') format('woff'),
+         url('../fonts/ThaiSansLite/thaisanslite_r1.ttf') format('truetype'),
+         url('../fonts/ThaiSansLite/thaisanslite_r1.svg#thaisanslite_r1') format('svg');
+}
+
+@font-face {
+    font-family: 'ThaiSans_Bold';
+    src: url('../fonts/ThaiSansBold/ThaiSansNeueBold.eot');
+    src: url('../fonts/ThaiSansBold/ThaiSansNeueBold.eot') format('embedded-opentype'),
+         url('../fonts/ThaiSansBold/ThaiSansNeueBold.woff2') format('woff2'),
+         url('../fonts/ThaiSansBold/ThaiSansNeueBold.woff') format('woff'),
+         url('../fonts/ThaiSansBold/ThaiSansNeueBold.ttf') format('truetype'),
+         url('../fonts/ThaiSansBold/ThaiSansNeueBold.svg#ThaiSansNeueBold') format('svg');
+}

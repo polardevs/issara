@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'ThaiSansNeueBold';
+    src: url('fonts/ThaiSansNeueBold.eot');
+    src: url('fonts/ThaiSansNeueBold.eot') format('embedded-opentype'),
+         url('fonts/ThaiSansNeueBold.woff2') format('woff2'),
+         url('fonts/ThaiSansNeueBold.woff') format('woff'),
+         url('fonts/ThaiSansNeueBold.ttf') format('truetype'),
+         url('fonts/ThaiSansNeueBold.svg#ThaiSansNeueBold') format('svg');
+}

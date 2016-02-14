@@ -1,0 +1,107 @@
+body{
+	background-color: #f3f3f3;
+}
+
+h1,h2,h3,h4,h5,h6{
+	color: #333;
+	font-family: ThaiSans_Bold;
+}
+.share-bar {
+	padding-left: 0px;
+}
+.share-bar >small >i{
+	padding: 12px 5px 0px 15px;
+}
+.commented{
+	border: 1px solid;
+    padding: 15px;
+    margin-top: 30px;
+}
+.arrow-up:before{
+	border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-bottom: 16px solid #999;
+    /* border-right-color: rgba(169, 169, 169, 0); */
+    left: 15px;
+    top: -31px;
+    position: relative;
+}
+.arrow-up:after{
+	border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-bottom: 14px solid #fff;
+    /* border-right-color: rgba(169, 169, 169, 0); */
+    left: 17px;
+    top: -154px;
+    position: relative;
+}
+.form-login ,.form-register{
+	position: fixed;
+    left: 50%;
+    z-index: 2;
+    background-color: #eee;
+    width: 280px;
+    height: 330px;
+    top: 50%;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: -140px;
+    margin-top: -150px;
+}
+.bg-form-login{
+	background-color: rgba(88,86,88,0.75);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    z-index: 1;
+    overflow: hidden;
+}
+.btn-danger{
+	border-radius: 4px;
+	width: 100%;
+}
+.bg-white{
+	background-color: #fff;
+}
+.content-cate{
+	padding-bottom: 30px;
+}
+.content-cate p{
+	display: block; /* Fallback for non-webkit */
+	display: -webkit-box;
+	height: 60px;
+  	line-height: 1.48em;
+  	-webkit-line-clamp: 3;
+  	-webkit-box-orient: vertical;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+}
+.content-cate h4{
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+footer{
+	background-color: #444;
+}
+.close-login{
+	position: absolute;
+    float: right;
+    right: -5px;
+    top: -5px;
+    cursor: pointer;
+}
+.close-login .badge{
+	background-color: #444;
+	padding: 4px 7px;
+	border: 1px solid #fff;
+}
+.read-more{
+	font-size: 80%;
+	padding: 3px 8px;
+	margin-top: 5px;
+}
