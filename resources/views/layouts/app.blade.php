@@ -6,7 +6,7 @@
         <meta http-equiv="cache-control" content="no-cache">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="format-detection" content="telephone=no">
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no">
 
         <title>@yield('title')</title>
 
@@ -25,7 +25,13 @@
 
         <link rel="stylesheet" type="text/css" href="{{ asset('css/default-style.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/font-style.css') }}">
-        
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+        <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script> -->
+
+        <script type="text/javascript" src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+
+
 
         <style>
             body {

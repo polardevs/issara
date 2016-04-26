@@ -16,9 +16,12 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('facebook_id')->unique()->nullable();
+            $table->string('avatar');
             $table->string('password', 60);
+            $table->string('verify_code', 30);
             $table->enum('types', ['admin', 'employee', 'author', 'member']);
-            $table->tinyInteger('status_id')->unsigned();
+            $table->enum('status', ['disable', 'active', 'banned', 'waiting']);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

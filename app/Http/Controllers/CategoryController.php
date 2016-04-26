@@ -7,19 +7,23 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Category;
-use Carbon\Carbon;
+use App\Content;
+use App\AdsCatg;
+use Auth;
 
 class CategoryController extends Controller
 {
     public function index($category_name)
     {
-        $categories = Category::all();
-        $carbon = new Carbon;
-        // $carbon = Carbon::now('Asia/Bangkok');
+        $category_id = Category::where('name', $category_name)->first()->id;
+        $contents = Content::where('category_id', $category_id)
+                        ->where('status', 'approve')
+                        ->paginate(config('app.frontEnd.content.per_page'));
         return view('category', [
-            'category_menus' => $categories,
-            'category' => $categories->where('name', $category_name)->first(),
-            'date' => $carbon
+            'adsCategories' => AdsCatg::all(),
+            'category_menus' => Category::all(),
+            'contents' => $contents,
+            'user' => Auth::user(),
         ]);
     }
 }

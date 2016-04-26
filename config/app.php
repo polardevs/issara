@@ -156,6 +156,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
 
@@ -207,7 +208,41 @@ return [
          * Other Applications
          */
         'Image'     => Intervention\Image\Facades\Image::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
+
+    'frontEnd' => [
+        'topic' => [
+            'per_page' => 20,
+        ],
+
+        'content' => [
+            'per_page' => 10,
+            'recommend_show' => 3,
+        ],
+    ],
+
+    'admin' => [
+        'content' => [
+            'per_page' => 20
+        ],
+
+        'upload' => [
+            'image' => [
+                'path'    => env('DOMAIN_LINK', '') . '/images/',
+                'default' => Config('app.admin.upload.image.path') . '/image_missing.jpg',
+                'storage' => 1024,
+                'mimes'   => 'jpeg,png',
+            ],
+
+            'content' => [
+                'image' => [
+                    'width' => 640,
+                    'height' => 480
+                ]
+            ]
+        ],
+    ]
 
 ];

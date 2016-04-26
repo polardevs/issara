@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "nesbot/carbon": "^1.21",
         "intervention/image": "^2.3",
-        "laravel/socialite": "^2.0"
+        "laravel/socialite": "^2.0",
+        "guzzlehttp/guzzle": "~5.3|~6.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -29,6 +30,9 @@
     "autoload-dev": {
         "classmap": [
             "tests/TestCase.php"
+        ],
+        "files": [
+            "app/helpers.php"
         ]
     },
     "scripts": {

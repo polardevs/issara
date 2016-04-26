@@ -1,0 +1,47 @@
+.btn a {
+  color: #ffffff;
+  text-decoration: none;
+}
+.form-login .btn-danger {
+  border-radius: 4px;
+  width: 100%;
+}
+.co-topic {
+  border: 1px solid;
+  padding: 20px;
+}
+.co-topic h4 {
+  margin-top: 0px;
+  text-decoration: underline;
+}
+.profile img {
+  height: 50px;
+}
+.profile small {
+  position: relative;
+  top: 20px;
+}
+.profile small .fa {
+  font-size: 18px;
+  cursor: pointer;
+}
+.b-topic a {
+  color: #999;
+  text-decoration: none;
+}
+.cate-topic {
+  padding-top: 15px;
+}
+.cate-topic a {
+  color: #999;
+  text-decoration: none;
+}
+.like {
+  color: #217dbb;
+}
+.article {
+  padding-top: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

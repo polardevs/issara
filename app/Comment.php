@@ -14,6 +14,12 @@ class Comment extends Model
     protected $dates                = ['deleted_at'];
     protected $fillable             = ['content_id', 'user_id', 'category_id', 'detail', 'created_at', 'updated_at', 'deleted_at'];
 
+    // getter
+    public function getCreateTimeAttribute()
+    {
+        return $this->created_at->format('d F, Y');
+    }
+
     /**
      * Relations
      */

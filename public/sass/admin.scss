@@ -1,0 +1,77 @@
+
+.profile-img{
+    width: 80px;
+    height: 80px;
+}
+.btn{
+	padding: 6px 12px;
+}
+.profile-file{
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+
+.banner-insert{
+	max-height:200px;
+}
+
+.h-topic{
+    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: ThaiSans_Bold;
+    font-size: 20px;
+    color: #444;
+}
+.c-topic{
+    font-family: ThaiSans_Lite;
+    font-size: 18px;
+    padding-left: 20px;
+    display: -webkit-box;
+    height: 42px;
+    line-height: 1.3em;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.notification{
+  .label{
+    background-color: rgba(80, 65, 67, 0.8);
+    color: #fff;
+    margin-left: 10px;
+    top: -5px;
+    position: absolute;
+  }
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    color: #ed5565;
+}
+.img-circle{
+  width: 45px;
+  height: 45px;
+}
+.nav-header{
+  border-bottom: 1px solid #445C73;
+}
+.tooltip.top-left {
+     padding: 5px 0;
+     margin-top: -3px;
+}

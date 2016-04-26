@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
@@ -12,7 +13,37 @@ class Category extends Model
     protected $table                = 'categories';
     protected $softDelete           = true;
     protected $dates                = ['deleted_at'];
-    protected $fillable             = ['name', 'parent_id', 'all_parent_id', 'flag_tail', 'order', 'created_at', 'updated_at'];
+    protected $fillable             = [
+                                        'name',
+                                        'parent_id',
+                                        'all_parent_id',
+                                        'flag_tail',
+                                        'order',
+                                        'created_at',
+                                        'updated_at'
+                                        ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope('category', function(Builder $builder) {
+          $builder->where('is_topic', 0)
+                  ->where('is_ads', 0);
+        });
+
+        Category::creating(function ($category) {
+            if(!$category->order)
+                $category->order = Category::count() + 1;
+        });
+    }
+
+    // getter
+    public function getLinkAttribute()
+    {
+        $link = str_replace(' ', '-', $this->name);
+        $link .= '-' . $this->id;
+        return $link;
+    }
 
     /**
      * Relations

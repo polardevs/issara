@@ -3,8 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+
+use Auth;
 
 class Content extends Model
 {
@@ -13,14 +16,41 @@ class Content extends Model
     protected $table                = 'contents';
     protected $softDelete           = true;
     protected $dates                = ['deleted_at'];
-    protected $fillable             = ['category_id', 'user_id', 'image', 'video_url', 'name', 'content', 'types', 'status', 'created_at', 'updated_at'];
+    protected $fillable             = ['category_id', 'user_id', 'image', 'video_url', 'name', 'short_desc', 'content', 'types', 'status', 'created_at', 'updated_at'];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope('content', function(Builder $builder) {
+            $builder->where('types', 'content');
+        });
+
+        Content::creating(function ($content) {
+            $content->image = uploadFile($content->image, 'content', 'images');
+
+            if(Auth::user()) $content->user_id = Auth::user()->id;
+            $content->types = 'content';
+        });
+
+        Content::updating(function ($content) {
+            $content->image = uploadFile($content->image, 'content', 'images');
+
+            if(Auth::user()) $content->user_id = Auth::user()->id;
+            $content->types = 'content';
+        });
+    }
 
     // getter
     public function getCreateTimeAttribute()
     {
         return $this->created_at->format('d F, Y');
-        // $carbon = Carbon::createFromFormat('Y-m-d H', $this->created_at);
-        // dd($carbon);
+    }
+
+    public function getLinkAttribute()
+    {
+        $link = str_replace(' ', '-', $this->name);
+        $link .= '-' . $this->id;
+        return $link;
     }
 
     /**

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Category;
+use App\AdsCatg;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -27,8 +29,20 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         return view('index', [
+            'adsCategories' => AdsCatg::all(),
             'category_menus' => $categories,
             'categories' => $categories,
+            'user' => Auth::user()
+        ]);
+    }
+
+    public function profile()
+    {
+        $user = Auth::user();
+        if(!$user) return redirect()->guest('login');
+        return view('profile', [
+            'category_menus' => Category::all(),
+            'user' => $user
         ]);
     }
 }

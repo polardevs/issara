@@ -30,4 +30,15 @@ return [
 
     'compiled' => realpath(storage_path('framework/views')),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Data Config On Website
+    |--------------------------------------------------------------------------
+    |
+    | This data config is using to any condition on this website
+    |
+    */
+
+    'perpage' => 4,
+    'recommend_show' => 3,
 ];

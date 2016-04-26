@@ -17,7 +17,7 @@ class CreateLikesTable extends Migration
             $table->integer('content_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('category_id')->unsigned();
-            $table->timestamp('created_at');
+            // $table->timestamp('created_at');
         });
     }
 

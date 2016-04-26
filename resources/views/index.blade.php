@@ -44,53 +44,41 @@
             </div>
             <div class="row">
                 @foreach($categories as $category)
+                    @if($category->contents->count())
                     <div class="col-sm-6" style="padding-bottom: 30px;">
                         <div class="row">
                             <div class="col-sm-12">
                                 <h3 class="text-uppercase">{{$category->name}}</h3>
                                 <img src="{{ $category->contents->first()->image }}" class="img-responsive">
-                                <p style="padding-top: 10px;">{{ $category->contents->first()->content }}</p>
+                                <p class="article">{{ $category->contents->first()->name }}</p>
                             </div>
                             <div class="col-xs-4">
-                                <a href="{{route('content', $category->contents->first()->id)}}"><span class="btn btn-default read-more">READ MORE</span></a>
+                                <a href="{{route('content', $category->contents->first()->link)}}">
+                                    <span class="btn btn-default read-more">READ MORE</span>
+                                </a>
                             </div>
                             <div class="col-xs-8 share-bar">
-                                <small>
-                                    <i class="fa fa-comment-o"></i> 50
-                                    <i class="fa fa-heart-o"></i> 50
-                                    <i class="fa fa-share-alt"></i>
-                                </small>
+                                <i class="fa fa-comment-o"></i> <span>{{$category->comments->count()}}</span>
+                                <i class="fa fa-heart-o"></i> <span>{{$category->likes->count()}}</span>
+                                <i class="fb-share-button" data-href="{{route('content', $category->contents->first()->link)}}" data-layout="button"></i>
+                                <i class="g-plus" data-action="share" data-annotation="none" data-height="20"></i>
+                                <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
                             </div>
                             <div class="col-xs-12">
-                                <span class="btn btn-primary" style="margin-top: 10px; padding:6px 15px; border: none;"><small>MORE STORIES</small></span>
+                                <a href="{{route('category', $category->name)}}">
+                                <span class="btn btn-primary more-stories" style="margin-top: 10px; padding:6px 15px; border: none;">
+                                    <small>MORE STORIES</small>
+                                </span>
+                                </a>
                             </div>
                         </div>
                     </div>
+                    @endif
                 @endforeach
             </div>
         </div>
         <div class="col-sm-4" style="border-left: 1px solid #eee;">
-            <h3>FOLLOW US FACEBOOK</h3>
-            <div class="fb-page"
-            data-href="https://www.facebook.com/imdb"
-            data-width="340"
-            data-hide-cover="false"
-            data-show-facepile="true"></div>
-
-            <h3>ISSARA FASTIVAL</h3>
-            <p>สงกรานต์</p>
-            <p>สงกรานต์</p>
-            <p>สงกรานต์</p>
-            <p>สงกรานต์</p>
-            <h3>OTHER LINk</h3>
-            <p>link 1</p>
-            <p>link 2</p>
-            <p>link 3</p>
-            <p>link 4</p>
-            <p>link 5</p>
-            <h3>SPONSERS</h3>
-            <img src="{{ asset('image/slide4.jpg') }}" class="img-responsive" style="padding-bottom: 15px;">
-            <img src="{{ asset('image/slide4.jpg') }}" class="img-responsive" style="padding-bottom: 15px;">
+            @include('rightmenu')
         </div>
     </div>
 </div>

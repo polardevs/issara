@@ -18,10 +18,13 @@ class CreateContentsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('image');
             $table->string('video_url');
+            $table->string('link_url');
             $table->string('name');
-            $table->string('content');
-            $table->enum('types', ['content', 'forum']);
-            $table->enum('status', ['approve', 'wating', 'reject']);
+            $table->text('short_desc');
+            $table->text('content');
+            $table->tinyInteger('recommend');
+            $table->enum('types', ['content', 'topic', 'advertise']);
+            $table->enum('status', ['approve', 'waiting', 'reject']);
             $table->timestamps();
             $table->softDeletes();
         });

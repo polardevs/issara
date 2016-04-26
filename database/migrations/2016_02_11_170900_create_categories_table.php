@@ -18,6 +18,8 @@ class CreateCategoriesTable extends Migration
             $table->integer('parent_id')->unsigned();
             $table->string('all_parent_id');
             $table->boolean('flag_tail');
+            $table->boolean('is_topic');
+            $table->boolean('is_ads');
             $table->tinyInteger('order')->unsigned();
             $table->timestamps();
             $table->softDeletes();
