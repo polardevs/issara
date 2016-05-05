@@ -6,6 +6,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Category;
 use App\AdsCatg;
+use App\Banner;
 use Auth;
 
 class HomeController extends Controller
@@ -29,6 +30,7 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         return view('index', [
+            'banners' => Banner::orderBy('order')->get(),
             'adsCategories' => AdsCatg::all(),
             'category_menus' => $categories,
             'categories' => $categories,

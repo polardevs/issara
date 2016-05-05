@@ -15,7 +15,7 @@
 	});
 </script>
 
-<div class="container bg-white">
+<div class="container container-content bg-white">
 	<h3>สร้างกระทู้ใหม่</h3>
 	<hr>
 	<form class="form-horizontal" method="POST" action="{{ route('create_topic') }}">

@@ -40,5 +40,11 @@ class CategoriesSeeder extends Seeder
                 'is_ads' => 1
             ]);
         }
+
+        Category::create([
+                'name' => 'banner',
+                'order' => 1,
+                'is_banner' => 1
+            ]);
     }
 }

@@ -39,7 +39,7 @@
                     <form class="navbar-form navbar-right" role="search" method="GET" action="{{route('search-content')}}">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search..." id="sizing-addon2" name="key_word" value="{{$keyword or ''}}">
-                            <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search"></i></span>
+                            <span class="input-group-addon" id="sizing-addon2" onclick="$('.navbar-form').submit();"><i class="fa fa-search" type=></i></span>
                         </div>
                     </form>
                     @if(@$user)
@@ -55,7 +55,7 @@
         <img class="img-responsive" src="{{ asset('image/header.jpg') }}" style="padding-top: 15px;">
     	<nav class="navbar navbar-default" style="margin-top: 10px;">
             <div class="container">
-                <div class="navbar-header visible-xs">
+                <div class="navbar visible-xs">
 
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
@@ -87,13 +87,13 @@
                             <!-- <li><a href="#" id="login">LOGIN</a></li> -->
                         @endif
                         <form class="navbar-form navbar-right" role="search" method="GET" action="{{route('search-content')}}">
-                            <div class="input-group">
+                            <div class="input-group" style="margin-left: 15px;">
                                 <input type="text" class="form-control" placeholder="Search..." id="sizing-addon2" name="key_word" value="{{$keyword or ''}}">
-                                <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search"></i></span>
+                                <span class="input-group-addon" id="sizing-addon2" onclick="$('.navbar-form').submit();"><i class="fa fa-search"></i></span>
                             </div>
                         </form>
                         @if(@$user)
-                            <ul class="nav navbar-nav navbar-right">
+                            <ul class="nav navbar-nav navbar-right" style="margin-left: 0px;">
                                 <li><a href="{{ url('/profile') }}" class="wellcome">ยินดีต้อนรับคุณ {{ $user->name }}</a></li>
                             </ul>
                         @endif

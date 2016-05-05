@@ -1,40 +1,22 @@
 <?php
-/*
-|--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
 
-Route::get('/admin/member', function () {
-    return view('admin.member.index');
+Route::get('/fullstack', function () {
+    return view('fullstack');
 });
 
-Route::get('/admin/member/insert', function () {
-    return view('admin.member.insertupdate');
+Route::get('/netty', function () {
+    return view('netty');
 });
 
-
-Route::get('/admin/banner', function () {
-    return view('admin.banner.index');
-});
-Route::get('/admin/banner/insert', function () {
-    return view('admin.banner.insertupdate');
-});
+// Route::get('/admin/comment', function () {
+//     return view('admin.comment.index');
+// });
+// Route::get('/admin/comment/category', function () {
+//     return view('admin.comment.list');
+// });
+// Route::get('/admin/comment/notification', function () {
+//     return view('admin.comment.notification');
+// });
 
 Route::get('/admin/webboard', function () {
     return view('admin.webboard.index');
@@ -44,15 +26,6 @@ Route::get('/admin/webboard/category', function () {
 });
 Route::get('/admin/webboard/notification', function () {
     return view('admin.webboard.notification');
-});
-Route::get('/admin/comment', function () {
-    return view('admin.comment.index');
-});
-Route::get('/admin/comment/category', function () {
-    return view('admin.comment.list');
-});
-Route::get('/admin/comment/notification', function () {
-    return view('admin.comment.notification');
 });
 
 Route::group(['middleware' => 'web'], function () {
@@ -65,7 +38,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('', 'HomeController@index')->name('home');
     Route::get('category/{category_name}', 'CategoryController@index')->name('category');
     Route::get('content/{content_name}', 'ContentController@index')->name('content');
-    Route::post('content/comment', 'ContentController@store')->name('content-comment');
     Route::get('search', 'ListContentController@searchContent')->name('search-content');
 
     // User
@@ -80,29 +52,44 @@ Route::group(['middleware' => 'web'], function () {
 
             Route::post('create', 'WebBoardController@store')->name('create_topic');
             Route::post('comment', 'ContentController@store')->name('webboard-comment');
+            // Route::post('content/comment', 'ContentController@store')->name('content-comment');
+            // Route::post('content/comment/{commentID}', 'ContentController@update')->name('content-comment-edit');
         });
+
+        Route::resource('content/comment', 'ContentController');
     });
 
     // Admin
     Route::group(['middleware' => 'backOffice'], function () {
+        // Disable Comment on Content
+        Route::post('disableComment/{commentID}', 'Admin\CommentController@disableComment');
+
         Route::group(['prefix' => 'admin'], function () {
             // DashBoard
             Route::resource('', 'Admin\BackOfficeController');
 
-            // Profile
+            // Profile & Manage member
             Route::get('profile', 'Admin\BackOfficeController@profile');
+            Route::resource('member', 'Admin\UserController');
 
             // All Catg
             Route::resource('catg-content' , 'Admin\CatgContentController');
             Route::resource('catg-ads'     , 'Admin\CatgAdsController');
             Route::resource('catg-webboard', 'Admin\CatgWebboardController');
 
-            // Content, Topic, Advertise
+            // Content, Topic, Advertise, Banner
             Route::resource('content'  , 'Admin\ContentController');
             Route::resource('advertise', 'Admin\AdvertiseController');
+            Route::resource('banner'   , 'Admin\BannerController');
 
+            // Comment
+            Route::resource('comment', 'Admin\CommentController');
+
+
+            // Switch Status
             Route::post('advertise/changeStatus/{adsId}', 'Admin\AdvertiseController@changeStatus');
             Route::post('content/changeStatus/{contentId}', 'Admin\ContentController@changeStatus');
+            Route::post('member/changeStatus/{userId}', 'Admin\UserController@changeStatus');
         });
     });
 });

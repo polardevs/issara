@@ -2,7 +2,7 @@
 
 @section('content')
 <div id="fb-root"></div>
-<div class="container bg-white">
+<div class="container container-content  bg-white">
     <div class="row">
         <div class="col-sm-8">
           <div class="row">

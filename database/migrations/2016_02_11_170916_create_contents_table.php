@@ -14,7 +14,7 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id')->unsigned();
+            $table->integer('category_id');
             $table->integer('user_id')->unsigned();
             $table->string('image');
             $table->string('video_url');
@@ -23,8 +23,9 @@ class CreateContentsTable extends Migration
             $table->text('short_desc');
             $table->text('content');
             $table->tinyInteger('recommend');
-            $table->enum('types', ['content', 'topic', 'advertise']);
+            $table->enum('types', ['content', 'topic', 'advertise', 'banner']);
             $table->enum('status', ['approve', 'waiting', 'reject']);
+            $table->tinyInteger('order')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });

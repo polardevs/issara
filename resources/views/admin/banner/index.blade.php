@@ -33,15 +33,16 @@
 	<div class="wrapper wrapper-content animated fadeInRight">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Banner</h5>    
+                <h5>Banner</h5>
                 <div class="ibox-tools">
-                    <a href="{{ url('admin/banner/insert') }}" class="collapse-link">
+                    <a href="{{ action('Admin\BannerController@create') }}" class="collapse-link">
                         <span class="label label-primary"><i class="fa fa-plus"></i></span>
                     </a>
-                </div>                
+                </div>
             </div>
             <div class="ibox-content">
             	<div class="row">
+                    {{--
                     <div class="col-sm-12 form-horizontal">
                         <div class="form-group">
                             <label class="col-sm-1 control-label">Name</label>
@@ -53,6 +54,7 @@
                             </div>
                         </div>
                     </div>
+                    --}}
 
             		<div class="col-sm-12">
                         <table class="table table-bordered">
@@ -65,20 +67,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
-                                  <tr>
-                                    <td class="text-center">1</td>
-                                    <td>img</td>
-                                    <td>content</td>
-                                    <td>
-                                        <i class="fa fa-check hidden"></i>
-                                        <i class="fa fa-times hidden"></i>
-                                         
-                                        <i data-toggle="tooltip" title="Edit" class="fa fa-pencil-square-o text-success"></i>
-                                        <i data-toggle="tooltip" title="Delete Public" class="fa fa-trash text-danger"></i>
-                                    </td>
-                                  </tr>
-                                
+                                @foreach($banners as $banner)
+                                    <tr>
+                                        <td class="text-center">{{$banner->order}}</td>
+                                        <td>
+                                            <img src="{{$banner->image}}" class="center-block banner-insert img-responsive">
+                                        </td>
+                                        <td>{!!$banner->content!!}</td>
+                                        <td>
+                                            <i class="fa fa-check hidden"></i>
+                                            <i class="fa fa-times hidden"></i>
+                                            <a data-toggle="tooltip" title="Edit" href="{{ action('Admin\BannerController@edit', $banner->id) }}" class="fa fa-pencil-square-o text-success"></a>
+                                            <i data-toggle="tooltip" title="Delete" class="fa fa-trash text-danger" style="cursor:pointer;" onclick="$(this).find('form').submit();">
+                                                <form action="{{action('Admin\BannerController@destroy', $banner->id)}}" method="POST" hidden>
+                                                   <input type="hidden" name="_method" value="delete">
+                                                   <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                                </form>
+                                            </i>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
             		</div>
@@ -87,7 +95,7 @@
         </div>
     </div>
     @include('admin.footer')
-         
+
 </div>
 @endsection
 

@@ -2,7 +2,7 @@
 
 @section('content')
 <div id="fb-root"></div>
-<div class="container bg-white">
+<div class="container container-content bg-white">
     <div class="row">
         <div class="col-sm-8">
         	<div class="row">
@@ -17,7 +17,7 @@
                             <h4>{{$content->name}}</h4>
                         </a>
                         <div class="desc-content">{!!$content->short_desc!!}</div>
-                        <div class="share-bar">
+                        <div class="share-bar" style="padding-left: 0px;">
                             <i class="fa fa-comment-o"></i> <span>{{$content->comments->count()}}</span>
                             <i class="fa fa-heart-o"></i> <span>{{$content->likes->count()}}</span>
                             <i class="fb-share-button" data-href="{{route('content', $content->link)}}" data-layout="button"></i>

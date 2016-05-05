@@ -37,7 +37,7 @@
 	                <a href="{{ url('/admin') }}">Home</a>
 	            </li>
                 <li>
-                    <a href="{{ url('/admin/banner') }}">Banner</a>
+                    <a href="{{ action('Admin\BannerController@index') }}">Banner</a>
                 </li>
 	            <li class="active">
 	                <strong>Insert</strong>
@@ -46,44 +46,58 @@
 	    </div>
 
 	</div>
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 	<div class="wrapper wrapper-content animated fadeInRight">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Banner</h5>    
+                <h5>Banner</h5>
             </div>
             <div class="ibox-content">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <img src="{{ url('/image/slide4.jpg') }}" class="center-block banner-insert img-responsive">
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="col-sm-8 col-sm-offset-2 form-horizontal">
-                        <div class="form-group">
-                            <input type="file" class="form-control" name="image">
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="form-horizontal">
+                <form method="POST" action="{{ (@$banner)? action('Admin\BannerController@update', $banner->id) : action('Admin\BannerController@store') }}" enctype="multipart/form-data">
+                    @if(@$banner) {!! method_field('put') !!} @endif
+                    {!! csrf_field() !!}
+                    <div class="row">
+                        <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Order Index</label>
-                                <div class="col-sm-10"><input type="text" class="form-control"></div>
+                                <img id="previewImage" src="{{ $banner->image or '' }}" class="center-block banner-insert img-responsive">
                             </div>
                         </div>
-
-                        <textarea id="myTextarea" name="content"></textarea>
-                    </div>
-                    <div class="col-sm-12 text-right" style="padding-top:20px;">
-                        <button class="btn btn-white" type="submit">Cancel</button>
+                        <div class="clearfix"></div>
+                        <div class="col-sm-8 col-sm-offset-2 form-horizontal">
+                            <div class="form-group">
+                                <input type="file" class="form-control" name="image" onchange="readURL(this, 'previewImage')">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    @if(@$banner)
+                                        <label class="col-sm-2 control-label">Order Index</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="order" value="{{$banner->order or ''}}">
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <textarea id="myTextarea" name="content">{!! $banner->content or '' !!}</textarea>
+                        </div>
+                        <div class="col-sm-12 text-right" style="padding-top:20px;">
                             <button class="btn btn-primary" type="submit">Save changes</button>
+                        </div>
                     </div>
-                    
-                </div>
+                </form>
             </div>
         </div>
     </div>
-    @include('admin.footer')     
+    @include('admin.footer')
 </div>
 @endsection
 

@@ -2,14 +2,16 @@
 
 @section('content')
 
-<div class="container bg-white">
+<div class="container container-content bg-white">
     <div class="row">
         <div class="col-sm-12">
         	<img src="{{ asset('image/detail1.jpg') }}" class="img-responsive center-block" style="max-width: 120px; padding-top:25px;">
         	<ul class="nav nav-tabs">
   				<li class="active"><a data-toggle="tab" href="#home">Profile</a></li>
  				<li><a data-toggle="tab" href="#menu1">My topic</a></li>
- 				<li><a href="{{ url('/admin') }}">Admin Page</a></li>
+ 				@if(Auth::user()->types === 'author' || Auth::user()->types === 'admin')
+ 					<li><a href="{{ url('/admin') }}">Admin Page</a></li>
+ 				@endif
 			</ul>
 
 			<div class="tab-content">

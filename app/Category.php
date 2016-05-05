@@ -28,6 +28,7 @@ class Category extends Model
         parent::boot();
         static::addGlobalScope('category', function(Builder $builder) {
           $builder->where('is_topic', 0)
+                  ->where('is_banner', 0)
                   ->where('is_ads', 0);
         });
 

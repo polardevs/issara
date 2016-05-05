@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container bg-white">
+<div class="container container-content bg-white">
 	<h3 class="inline-block">{{ $latestTopic or $channels->find($selected_channel)->name }}</h3>
 	<div class="btn btn-success inline-block pull-right margin-t20"><a href="{{ route('new_topic') }}">สร้างกระทู้ใหม่</a></div>
 	<hr>

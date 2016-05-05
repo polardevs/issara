@@ -13,7 +13,7 @@
     });
 </script>
 
-<div class="container bg-white">
+<div class="container container-content bg-white">
     <div class="cate-topic">
         <p><a href="{{ route('webboard', $topic->channel->id) }}">{{$topic->channel->name}}</a></p>
         <hr>

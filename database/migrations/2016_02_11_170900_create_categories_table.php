@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->boolean('flag_tail');
             $table->boolean('is_topic');
             $table->boolean('is_ads');
+            $table->boolean('is_banner');
             $table->tinyInteger('order')->unsigned();
             $table->timestamps();
             $table->softDeletes();

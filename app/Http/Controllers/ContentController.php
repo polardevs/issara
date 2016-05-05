@@ -56,4 +56,12 @@ class ContentController extends Controller
             return redirect( route('read_topic', $topic->id) );
         }
     }
+
+    public function update(Request $request, $id)
+    {
+        $comment = Comment::find($id);
+        $comment->update($request->all());
+
+        return back();
+    }
 }

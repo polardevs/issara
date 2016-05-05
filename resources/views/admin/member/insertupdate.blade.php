@@ -24,110 +24,82 @@
 	                <a href="{{ url('/admin') }}">Home</a>
 	            </li>
                 <li>
-                    <a href="{{ url('/admin/member') }}">Member</a>
+                    <a href="{{ action('Admin\UserController@index') }}">Member</a>
                 </li>
 	            <li class="active">
 	                <strong>Insert</strong>
 	            </li>
 	        </ol>
 	    </div>
-
 	</div>
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 	<div class="wrapper wrapper-content animated fadeInRight">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Member</h5>    
+                <h5>Member</h5>
             </div>
             <div class="ibox-content">
+                <form method="POST" action="{{ (@$user)? action('Admin\UserController@update', $user->id) : action('Admin\UserController@store') }}" enctype="multipart/form-data">
+                @if(@$user) {!! method_field('put') !!} @endif
+                {!! csrf_field() !!}
                 <div class="row">
                     <div class="col-sm-6 form-horizontal">
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Name</label>
-                            <div class="col-sm-10"><input type="text" class="form-control"></div>
+                            <div class="col-sm-10"><input type="text" class="form-control" name="name" value="{{$user->name or old('name')}}"></div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">E-mail</label>
-                            <div class="col-sm-10"><input type="text" class="form-control"></div>
+                            <div class="col-sm-10"><input type="text" class="form-control" name="email" value="{{$user->email or old('email')}}"></div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Role</label>
                             <div class="col-sm-10">
-                                <select class="form-control m-b" name="account">
-                                    <option>option 1</option>
-                                    <option>option 2</option>
-                                    <option>option 3</option>
-                                    <option>option 4</option>
+                                <select class="form-control m-b" name="types">
+                                    <option value="">--select role--</option>
+                                    @foreach(config('app.frontEnd.userTypes') as $role)
+                                        <option value="{{$role}}" @if(@$user->types == $role) selected @endif>{{$role}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
-                    
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Permission</label>
-
-                            <div class="col-sm-10">
-                                <div class="checkbox checkbox-info checkbox-circle">
-                                    <input id="checkbox8" type="checkbox" >
-                                    <label for="checkbox8">Category</label>
-                                </div>
-                                <div class="checkbox checkbox-info checkbox-circle">
-                                    <input id="checkbox8" type="checkbox" >
-                                    <label for="checkbox8">Content</label>
-                                </div>
-                                <div class="checkbox checkbox-info checkbox-circle">
-                                    <input id="checkbox8" type="checkbox" >
-                                    <label for="checkbox8">Advertise</label>
-                                </div>
-                                <div class="checkbox checkbox-info checkbox-circle">
-                                    <input id="checkbox8" type="checkbox" >
-                                    <label for="checkbox8">Advertise Manager</label>
-                                </div>
-                                <div class="checkbox checkbox-info checkbox-circle">
-                                    <input id="checkbox8" type="checkbox" >
-                                    <label for="checkbox8">Webboard</label>
-                                </div>
-                                <div class="checkbox checkbox-info checkbox-circle">
-                                    <input id="checkbox8" type="checkbox" >
-                                    <label for="checkbox8">Member</label>
-                                </div>
-                                <div class="checkbox checkbox-info checkbox-circle">
-                                    <input id="checkbox8" type="checkbox" >
-                                    <label for="checkbox8">Comment</label>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        
                     </div>
                     <div class="col-sm-6 form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Surname</label>
-                            <div class="col-sm-10"><input type="text" class="form-control"></div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Password</label>
-                            <div class="col-sm-10"><input type="text" class="form-control"></div>
+                            <label class="col-sm-2 control-label">Avatar</label>
+                            <div class="col-sm-10"><input type="text" class="form-control" name="avatar" value="{{$user->avatar or old('avatar')}}"></div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Status</label>
                             <div class="col-sm-10">
-                                <i data-toggle="tooltip" title="Status Public"class="fa fa-check text-primary"></i>
-                                <i data-toggle="tooltip" title="Status Private"class="fa fa-times text-muted"></i>
-                                
+                                <select class="form-control m-b" name="status">
+                                    <option value="">--select status--</option>
+                                    @foreach(config('app.frontEnd.userStatus') as $status)
+                                        <option value="{{$status}}" @if(@$user->status == $status) selected @endif>{{$status}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group text-right">
-                            <button class="btn btn-white" type="submit">Cancel</button>
                             <button class="btn btn-primary" type="submit">Save changes</button>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
-    @include('admin.footer')      
+    @include('admin.footer')
 </div>
 @endsection
 

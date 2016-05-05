@@ -28,8 +28,7 @@ class AdsCatg extends Model
     {
         parent::boot();
         static::addGlobalScope('channel', function(Builder $builder) {
-          $builder->where('is_ads', 1)
-                  ->where('is_topic', 0);
+          $builder->where('is_ads', 1);
         });
 
         Channel::creating(function ($channel) {

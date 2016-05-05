@@ -17,3 +17,13 @@
          url('../fonts/ThaiSansBold/ThaiSansNeueBold.ttf') format('truetype'),
          url('../fonts/ThaiSansBold/ThaiSansNeueBold.svg#ThaiSansNeueBold') format('svg');
 }
+
+@font-face {
+    font-family: 'Myriad';
+    src: url('../fonts/Myriad/MyriadProLight.eot');
+    src: url('../fonts/Myriad/MyriadProLight.eot') format('embedded-opentype'),
+         url('../fonts/Myriad/MyriadProLight.woff2') format('woff2'),
+         url('../fonts/Myriad/MyriadProLight.woff') format('woff'),
+         url('../fonts/Myriad/MyriadProLight.ttf') format('truetype'),
+         url('../fonts/Myriad/MyriadProLight.svg#MyriadProLight') format('svg');
+}

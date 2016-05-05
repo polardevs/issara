@@ -212,6 +212,10 @@ return [
 
     ],
 
+    /*
+     * Custom Array to use in Develop
+     */
+
     'frontEnd' => [
         'topic' => [
             'per_page' => 20,
@@ -220,6 +224,19 @@ return [
         'content' => [
             'per_page' => 10,
             'recommend_show' => 3,
+        ],
+
+        'userTypes' => [
+            'admin',
+            'employee',
+            'author',
+            'member'
+        ],
+
+        'userStatus' => [
+            'active',
+            'banned',
+            'waiting'
         ],
     ],
 

@@ -36,6 +36,9 @@
 </footer>
 
 <script>
+var minHeight =  $(document).height();
+$('.container-content').css("min-height",  minHeight - 117 +'px')
+
 $( "#login" ).click(function() {
   $('#form-login').show();
 });
