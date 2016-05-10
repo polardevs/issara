@@ -18,9 +18,13 @@
                 </div>
 
                 <div class="col-sm-12">
-                    <i class="fb-share-button" data-href="{{route('content', $content->link)}}" data-layout="button"></i>
-                    <i class="g-plus" data-action="share" data-annotation="none" data-height="20"></i>
-                    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+                    <div class="share-bar">
+                        <!-- if click or liked class to "text-danger" -->
+                       <span class="" style="cursor: pointer;"><i class="fa fa-heart"></i> 0 </span> 
+                        <i class="fb-share-button" data-href="{{route('content', $content->link)}}" data-layout="button"></i>
+                        <i class="g-plus" data-action="share" data-annotation="none" data-height="20"></i>
+                        <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+                    </div>
                 </div>
                 <div class="col-sm-12">
                     <h3>Recommend</h3>
@@ -80,23 +84,31 @@
                                             </div>
                                             <div class="col-xs-8 visible-xs">
                                                 @if(Auth::user()->types === 'author' || Auth::user()->types === 'admin')
-                                                    <i class="fa fa-ban text-danger pull-right" style="cursor:pointer;" onclick="$(this).find('form').submit();">
-                                                        DELETE
-                                                        <form action="{{action('Admin\CommentController@disableComment', $comment->id)}}" method="POST" hidden>
-                                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                                        </form>
-                                                    </i>
+                                                <div onclick="$(this).find('form').submit();" class="pull-right text-danger">
+                                                    <i class="fa fa-trash" style="cursor:pointer;" ></i> 
+                                                    <!-- <span> DELETE </span> -->
+                                                    <form action="{{action('Admin\CommentController@disableComment', $comment->id)}}" method="POST" hidden>
+                                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                                    </form>
+                                                </div>
                                                 @endif
+                                                @if(Auth::user()->id == $comment->user->id)
+                                                <div id="editBtn-xs-{{$comment->id}}" onclick="editComment({{$comment->id}})" class="pull-right">
+                                                    <i class="fa fa-pencil pull-right" style="cursor:pointer; margin-right:10px; margin-top:2px;"></i>
+                                                </div>
+                                                @endif
+
 
                                             </div>
                                             <div class="col-sm-10 col-xs-12">
                                                 @if(Auth::user()->types === 'author' || Auth::user()->types === 'admin')
-                                                    <i class="fa fa-ban text-danger pull-right hidden-xs" style="cursor:pointer;" onclick="$(this).find('form').submit();">
-                                                        DELETE
-                                                        <form action="{{action('Admin\CommentController@disableComment', $comment->id)}}" method="POST" hidden>
-                                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                                        </form>
-                                                    </i>
+                                                <div onclick="$(this).find('form').submit();" class="pull-right btn btn-info hidden-xs">
+                                                    <i class="fa fa-trash" style="cursor:pointer;" ></i> 
+                                                    <span> Delete </span>
+                                                    <form action="{{action('Admin\CommentController@disableComment', $comment->id)}}" method="POST" hidden>
+                                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                                    </form>
+                                                </div>
                                                 @endif
                                                 <h4>{{$comment->user->name}}</h4>
                                                 <p id="{{'comment-' . $comment->id}}">{!! $comment->detail !!}</p>
@@ -111,8 +123,8 @@
                                                     <input type="submit" id="{{'edit-' . $comment->id}}" class="btn btn-success btn-comment" value="submit" disabled>
                                                 </form>
                                                 @if(Auth::user()->id == $comment->user->id)
-                                                    <button class="btn btn-default pull-right" id="editBtn-{{$comment->id}}" onclick="editComment({{$comment->id}})">
-                                                        Edit
+                                                    <button class="btn btn-info pull-right hidden-xs" id="editBtn-{{$comment->id}}" onclick="editComment({{$comment->id}})">
+                                                        <i class="fa fa-pencil"></i> Edit
                                                     </button>
                                                 @endif
                                             </div>
@@ -143,6 +155,7 @@
     {
         $('#comment-' + commentID).hide();
         $('#editBtn-' + commentID).hide();
+        $('#editBtn-xs-' + commentID).hide();
         $('#form-editComment-' + commentID).show();
     }
 
@@ -150,6 +163,7 @@
     {
         $('#comment-' + commentID).show();
         $('#editBtn-' + commentID).show();
+        $('#editBtn-xs-' + commentID).show();
         $('#form-editComment-' + commentID).hide();
     }
 

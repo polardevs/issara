@@ -43,12 +43,12 @@
                                 <img src="{{ $category->contents->first()->image }}" class="img-responsive">
                                 <p class="article">{{ $category->contents->first()->name }}</p>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-12 col-md-4">
                                 <a href="{{route('content', $category->contents->first()->link)}}">
                                     <span class="btn btn-default read-more">READ MORE</span>
                                 </a>
                             </div>
-                            <div class="col-sm-8 share-bar">
+                            <div class="col-sm-12 col-md-8 share-bar">
                                 <i class="fa fa-comment-o"></i> <span>{{$category->comments->count()}}</span>
                                 <i class="fa fa-heart-o"></i> <span>{{$category->likes->count()}}</span>
                                 <i class="fb-share-button" data-href="{{route('content', $category->contents->first()->link)}}" data-layout="button"></i>
